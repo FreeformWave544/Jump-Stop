@@ -1,8 +1,10 @@
 [gd_scene format=4 uid="uid://cls1fnq01el1g"]
 
 [ext_resource type="PackedScene" uid="uid://dp0agfd2sn1f8" path="res://Entities/Player/player.tscn" id="1_4o7x7"]
+[ext_resource type="Script" uid="uid://d3dghdeupqogf" path="res://Scenes/main.gd" id="1_5glqf"]
 [ext_resource type="Texture2D" uid="uid://bhn70dsutv054" path="res://icon.svg" id="2_elxuq"]
 [ext_resource type="PackedScene" uid="uid://ctudsdu41way0" path="res://Entities/Finish.tscn" id="3_5glqf"]
+[ext_resource type="PackedScene" uid="uid://dvautr1o13qgf" path="res://Scenes/Levels/2.tscn" id="4_elxuq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_v3n7g"]
 blend_mode = 1
@@ -230,7 +232,8 @@ noise = SubResource("FastNoiseLite_45o1r")
 color_ramp = SubResource("Gradient_fyn4y")
 seamless = true
 
-[node name="1" type="Node2D" unique_id=2059441884]
+[node name="Level" type="Node2D" unique_id=2059441884]
+script = ExtResource("1_5glqf")
 
 [node name="Player" parent="." unique_id=1490658536 instance=ExtResource("1_4o7x7")]
 
@@ -262,3 +265,6 @@ metadata/_edit_lock_ = true
 [node name="Finish" parent="." unique_id=572765617 instance=ExtResource("3_5glqf")]
 position = Vector2(2020, 48)
 scale = Vector2(2, 2)
+next_level = ExtResource("4_elxuq")
+
+[connection signal="body_entered" from="Deathzone" to="." method="_on_deathzone_body_entered"]

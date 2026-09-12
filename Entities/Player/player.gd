@@ -8,6 +8,12 @@ var pause := false
 func _physics_process(delta: float) -> void:
 	if pause: return
 	if not is_on_floor(): velocity += get_gravity() * delta
+	else:
+		if get_parent().find_child("DamageBlocks"):
+			var damage_layer = get_parent().find_child("DamageBlocks")
+			var tile_data = damage_layer.get_cell_tile_data(damage_layer.local_to_map(damage_layer.to_local(global_position + Vector2(0, 32))))
+			if tile_data:
+				if tile_data.get_custom_data("kills"): get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("jump") and is_on_floor(): velocity.y = JUMP_VELOCITY
 	if Input.is_action_just_pressed("STOP"):
 		var gradient = $Sprite2D.texture.gradient
