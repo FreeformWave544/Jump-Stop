@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://ctudsdu41way0"]
+
+[ext_resource type="Script" uid="uid://cuffjfu0wbccj" path="res://Entities/Finish.gd" id="1_k1yrc"]
+[ext_resource type="Texture2D" uid="uid://buffvwf28hiaw" path="res://assets/flag animation.png" id="2_mxlax"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16oi4"]
+atlas = ExtResource("2_mxlax")
+region = Rect2(0, 7, 60, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpht6"]
+atlas = ExtResource("2_mxlax")
+region = Rect2(60, 7, 60, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80bdn"]
+atlas = ExtResource("2_mxlax")
+region = Rect2(120, 7, 60, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jehm"]
+atlas = ExtResource("2_mxlax")
+region = Rect2(180, 7, 60, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32eau"]
+atlas = ExtResource("2_mxlax")
+region = Rect2(240, 7, 60, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g8kv5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16oi4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpht6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80bdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jehm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32eau")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_m8b8n"]
+offsets = PackedFloat32Array(0, 0.686747)
+colors = PackedColorArray(0, 0.8352941, 1, 1, 0, 1, 0.6862745, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_45o1r"]
+gradient = SubResource("Gradient_m8b8n")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8kv5"]
+size = Vector2(46, 36)
+
+[node name="Finish" type="Area2D" unique_id=572765617]
+script = ExtResource("1_k1yrc")
+
+[node name="FlagAnim" type="AnimatedSprite2D" parent="." unique_id=2036618534]
+z_index = 2
+position = Vector2(-6, 0)
+sprite_frames = SubResource("SpriteFrames_g8kv5")
+autoplay = "default"
+frame_progress = 0.5051414
+
+[node name="FlagAnim2" type="AnimatedSprite2D" parent="." unique_id=801750628]
+z_index = 2
+position = Vector2(6, 0)
+rotation = -3.1415927
+scale = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_g8kv5")
+autoplay = "default"
+frame_progress = 0.66700697
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1384091391]
+texture = SubResource("GradientTexture2D_45o1r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1662218292]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_g8kv5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
